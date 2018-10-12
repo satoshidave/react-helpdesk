@@ -1,0 +1,10 @@
+.template--button {
+  margin: 5px;
+  background-color: #282c34;
+  color: white;
+}
+
+.template--button:hover {
+  background-color: white;
+  color: #282c34;
+}

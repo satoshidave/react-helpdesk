@@ -1,0 +1,8 @@
+.nav--dashboard {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}

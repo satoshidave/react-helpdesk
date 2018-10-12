@@ -1,0 +1,25 @@
+.main--header {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.main--header--left {
+  color: white;
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.main--header--right {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header--item {
+  color: white;
+  margin: 10;
+}
