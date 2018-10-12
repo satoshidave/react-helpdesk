@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css';
 import Text from '../../components/Input/Text';
+import Password from '../../components/Input/Password';
 import { connect } from 'react-redux';
 import { authUser } from '../../actions';
 
@@ -31,10 +32,7 @@ class Login extends Component {
       <div className="App">
         <header className="header">
           <Text label="Usuario" placeholder="Ingrese su usuario" onChange={event => this.inputEvents(event, 'user')}/>
-					<div className="field">
-						<label className="label">Password</label>
-						<input type="password" className="input" placeholder="Ingrese su contraseña" required onChange={event => this.inputEvents(event, 'password')} />
-					</div>
+					<Password onChange={event => this.inputEvents(event, 'password')} />
 					<div className="field">
 						<div className="control">
 							<div className="button link" onClick={event => this.props.authUser(event, this.state.user, this.state.password)} >Ingresar</div>

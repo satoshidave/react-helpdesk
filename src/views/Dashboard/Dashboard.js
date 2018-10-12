@@ -15,8 +15,9 @@ class Dashboard extends Component {
     }
     this.modal = React.createRef();
   }
-  toggleModal = () => {
-    this.modal.current.toggleModal();
+  toggleModal = (event, action) => {
+    event.preventDefault();
+    this.modal.current.toggleModal(action);
   }
   componentDidMount () {
     this.setActions();
@@ -26,15 +27,15 @@ class Dashboard extends Component {
       case 1:
         this.setState({
           actions: [
-            { name: 'Crear usuario' },
-            { name: 'Eliminar Usuario' }
+            { name: 'Crear usuario', action: 'create-user' },
+            { name: 'Eliminar Usuario', action: 'delete-user' }
           ]
         });
         break;
       case 2:
         this.setState({
           actions: [
-            { name: 'Reportar Incidencia '}
+            { name: 'Reportar Incidencia', action: 'incidence' }
           ]
         });
         break;
@@ -50,7 +51,7 @@ class Dashboard extends Component {
         <Layout>
           <div className="nav--dashboard">
             {
-              this.state.actions.map((item, index) => <Button value={item.name} onClick={this.toggleModal} key={index} />)
+              this.state.actions.map((item, index) => <Button value={item.name} onClick={event => this.toggleModal(event, item.action)} key={index} />)
             }
           </div>
         </Layout>

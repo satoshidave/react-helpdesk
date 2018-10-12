@@ -35,6 +35,9 @@ class Incidence extends Component {
     });
     console.log(this.state)
   }
+  componentWillUnmount () {
+    this.clearInputs();
+  }
   render () {
     return (
       <>

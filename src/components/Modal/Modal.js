@@ -1,24 +1,51 @@
 import React, { Component } from 'react';
 import Incidence from '../Form/Incidence';
+import CreateUser from '../Form/CreateUser';
+import DeleteUser from '../Form/DeleteUser';
 import './Modal.css';
 
 class Modal extends Component {
   constructor () {
     super ();
     this.state = {
-      isOpen: false
+      isOpen: false,
+      component: null,
+      title: null
     }
-    this.inputs = React.createRef();
   }
-  toggleModal = () => {
+  toggleModal = (action = '') => {
     this.setState({
       isOpen: !this.state.isOpen
     }, () => {
-      if (!this.state.isOpen) this.clearInputs();
+      if (this.state.isOpen === true) {
+        console.log(action)
+        switch (action) {
+          case 'incidence':
+            this.setState({
+              title: 'Reportar Incidencia',
+              component: <Incidence />
+            });
+            break;
+          case 'create-user':
+            this.setState({
+              title: 'Crear usuario',
+              component: <CreateUser />
+            });
+            break;
+          case 'delete-user':
+            this.setState({
+              title: 'Eliminar usuario',
+              component: <DeleteUser />
+            });
+            break;
+          default:
+            this.setState({
+              component: <span>No component here</span>
+            })
+            break;
+        }
+      }
     })
-  }
-  clearInputs = () => {
-    this.inputs.current.clearInputs();
   }
   render () {
     return (
@@ -27,10 +54,10 @@ class Modal extends Component {
           <div className="modal--container">
             <div className="modal-card">
               <header className="modal-card-head">
-                <p className="modal-card-title">Reportar Incidencia</p>
+                <p className="modal-card-title">{this.state.title}</p>
                 <button onClick={this.toggleModal} className="delete"></button>
               </header>
-              <Incidence ref={this.inputs} />
+              { this.state.component }
             </div>
           </div>
           

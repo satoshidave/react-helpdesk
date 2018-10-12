@@ -14,7 +14,7 @@ class App extends Component {
     const data = localStorage.getItem('user');
     const user = JSON.parse(data);
     console.log(user)
-    if (user.success === true) {
+    if (user !== null && user.success === true) {
       this.setState({
         logged: true
       });
