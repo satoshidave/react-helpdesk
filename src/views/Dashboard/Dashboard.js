@@ -17,6 +17,7 @@ class Dashboard extends Component {
   }
   toggleModal = (event, action) => {
     event.preventDefault();
+    console.log(this.modal)
     this.modal.current.toggleModal(action);
   }
   componentDidMount () {

@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 
 const initialState = {
 	user: [],
+	userCreated: false
 }
 
 const reducer = (state, action) => {
@@ -16,6 +17,11 @@ const reducer = (state, action) => {
 			return {
 				...state,
 				user: action.user
+			}
+		case 'CREATE_USER_STATUS':
+			return {
+				...state,
+				userCreated: action.success
 			}
 		default:
 			break;

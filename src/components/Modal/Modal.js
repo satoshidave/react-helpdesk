@@ -44,6 +44,11 @@ class Modal extends Component {
             })
             break;
         }
+      } else {
+        this.setState({
+          title: null,
+          component: null
+        })
       }
     })
   }
