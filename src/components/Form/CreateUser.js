@@ -11,7 +11,7 @@ class CreateUser extends Component {
     name: null,
     user: null,
     password: null,
-    role: 1
+    role: 0
   }
   inputHandler = (event, action) => {
     const { value } = event.target;
@@ -31,6 +31,11 @@ class CreateUser extends Component {
           password: value
         });
         break;
+      case 'role':
+        this.setState({
+          role: value
+        });
+        break;
       default:
         break;
     }
@@ -43,6 +48,17 @@ class CreateUser extends Component {
           <Text label='Nombre:' className="incidence--label" onChange={event => this.inputHandler(event, 'name')} placeholder='Nombres y Apellidos del usuario' />
           <Text label='Usuario:' className="incidence--label" onChange={event => this.inputHandler(event, 'user')} placeholder='Nombre de usuario' />
           <Password className="incidence--label" onChange={event => this.inputHandler(event, 'password')} />
+          <div className="field">
+            <label className="label incidence--label">Rol:</label>
+            <div className="select">
+              <select onChange={event => this.inputHandler(event, 'role')} >
+                <option value="0">-- Seleccione</option>
+                <option value="1">Administrador</option>
+                <option value="2">Usuario</option>
+              </select>
+            </div>
+          </div>
+          
         </section>
         <footer className="modal-card-foot">
           <Button onClick={event => this.props.createUser(event, name, user, password, role)} value="Crear" />
@@ -52,15 +68,17 @@ class CreateUser extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, props) => {
   return {
     createUser (event, name, user, password, role) {
       event.preventDefault();
       if (
         name !== null && name !== undefined && name !== '' &&
         user !== null && user !== undefined && user !== '' &&
-        password !== null && password !== undefined && password !== ''
+        password !== null && password !== undefined && password !== '' && 
+        role !== null && role !== undefined && role !== '' && role !== 0 && role !== "0"
       ) {
+        props.toggleModal();
         dispatch(createUser(name, user, password, role));
       } else {
         alert('Faltan datos por ingresar');

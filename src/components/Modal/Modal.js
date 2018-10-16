@@ -29,7 +29,7 @@ class Modal extends Component {
           case 'create-user':
             this.setState({
               title: 'Crear usuario',
-              component: <CreateUser />
+              component: <CreateUser toggleModal={this.toggleModal} />
             });
             break;
           case 'delete-user':
