@@ -51,9 +51,35 @@ const createUser = (name, user, password, role) => {
 	}
 }
 
+const createIncidence = (subject, description, user_id) => {
+	return async dispatch => {
+		await axios.post('http://127.0.0.1:9000/incidences/create', { subject, description, user_id });
+		const request = await axios.post('http://127.0.0.1:9000/incidences/get', { user_id });
+		const { data } = request;
+		return dispatch({
+			type: 'USER_TICKETS',
+			tickets: data.data
+		})
+	}
+}
+
+const loadTickets = (user_id) => {
+	return async dispatch => {
+		const request = await axios.post('http://127.0.0.1:9000/incidences/get', { user_id });
+		console.log(request)
+		const { data } = request;
+		return dispatch({
+			type: 'USER_TICKETS',
+			tickets: data.data
+		})
+	}
+}
+
 export {
 	loadState,
 	authUser,
 	createUser,
-	resetCreateUser
+	resetCreateUser,
+	createIncidence,
+	loadTickets
 }

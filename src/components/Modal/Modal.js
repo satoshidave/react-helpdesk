@@ -23,7 +23,7 @@ class Modal extends Component {
           case 'incidence':
             this.setState({
               title: 'Reportar Incidencia',
-              component: <Incidence />
+              component: <Incidence toggleModal={this.toggleModal} />
             });
             break;
           case 'create-user':

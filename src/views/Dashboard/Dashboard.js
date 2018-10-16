@@ -4,7 +4,9 @@ import Footer from '../../components/Footer/Footer';
 import Button from '../../components/Button/Button';
 import Layout from '../../components/Layout/Layout';
 import Modal from '../../components/Modal/Modal'
+import Ticket from '../../components/Ticket/Ticket';
 import { connect } from 'react-redux';
+import { loadTickets } from '../../actions';
 import './Dashboard.css';
 
 class Dashboard extends Component {
@@ -22,6 +24,7 @@ class Dashboard extends Component {
   }
   componentDidMount () {
     this.setActions();
+    this.props.loadTickets(this.props.user.id);
   }
   setActions = () => {
     switch (this.props.user.role) {
@@ -45,7 +48,7 @@ class Dashboard extends Component {
     }
   }
   render () {
-    console.log(this.props.user)
+    const { tickets } = this.props;
     return (
       <>
       <Header />
@@ -54,6 +57,17 @@ class Dashboard extends Component {
             {
               this.state.actions.map((item, index) => <Button value={item.name} onClick={event => this.toggleModal(event, item.action)} key={index} />)
             }
+          </div>
+          <div className="container">
+            <div className="columns is-multiline">
+              {
+                tickets.map((item, index) => {
+                  return (
+                    <Ticket key={index} subject={item.subject} description={item.description} />
+                  )
+                })
+              }
+            </div>
           </div>
         </Layout>
         <Modal ref={this.modal} />
@@ -65,8 +79,17 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    tickets: state.tickets
   }
 }
 
-export default connect(mapStateToProps)(Dashboard);
+const mapDispatchToProps = dispatch => {
+  return {
+    loadTickets (user_id) {
+      dispatch(loadTickets(user_id));
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

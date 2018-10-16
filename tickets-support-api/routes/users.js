@@ -6,7 +6,7 @@ const router = express.Router();
 router.post('/', function(req, res, next) {
   const { user, password } = req.body;
   var success = false;
-  connection.query("SELECT name, role FROM users WHERE user = ? AND password = ?", [user, password],function(err, rows, fields) {
+  connection.query("SELECT id, name, role FROM users WHERE user = ? AND password = ?", [user, password],function(err, rows, fields) {
     if (err) {
       console.log('ERROR EN EL SERVIDOR');
       res.send(500);

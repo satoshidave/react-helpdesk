@@ -3,7 +3,8 @@ import thunk from 'redux-thunk';
 
 const initialState = {
 	user: [],
-	userCreated: false
+	userCreated: false,
+	tickets: []
 }
 
 const reducer = (state, action) => {
@@ -22,6 +23,12 @@ const reducer = (state, action) => {
 			return {
 				...state,
 				userCreated: action.success
+			}
+		case 'USER_TICKETS':
+			console.log(action)
+			return {
+				...state,
+				tickets: action.tickets
 			}
 		default:
 			break;

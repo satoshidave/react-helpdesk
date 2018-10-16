@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Button from '../Button/Button';
 import Text from '../Input/Text';
 import './Incidence.css';
+import { connect } from 'react-redux';
+import { createIncidence } from '../../actions';
 
 class Incidence extends Component {
   state = {
@@ -25,9 +27,6 @@ class Incidence extends Component {
       break;
     }
   }
-  sendIncidence = () => {
-    console.log(this.state)
-  }
   clearInputs = () => {
     this.setState({
       subject: null,
@@ -39,6 +38,8 @@ class Incidence extends Component {
     this.clearInputs();
   }
   render () {
+    const { subject, description } = this.state;
+    const { id } = this.props.user;
     return (
       <>
         <section className="modal-card-body">
@@ -49,11 +50,33 @@ class Incidence extends Component {
           </div>
         </section>
         <footer className="modal-card-foot">
-          <Button onClick={this.sendIncidence} value="Enviar Incidencia" />
+          <Button onClick={event => this.props.createIncidence(event, subject, description, id)} value="Enviar Incidencia" />
         </footer>
       </>
     )
   }
 }
 
-export default Incidence;
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    createIncidence(event, subject, description, user_id) {
+      event.preventDefault();
+      if (subject !== null && subject !== undefined && subject !== '' && 
+      description !== null && description !== undefined && description !== '' && 
+      user_id !== null && user_id !== undefined && user_id !== '') {
+        props.toggleModal();
+        dispatch(createIncidence(subject, description, user_id));
+      } else {
+        alert('Faltan datos por ingresar');
+      }
+    }
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Incidence);
