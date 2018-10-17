@@ -5,16 +5,30 @@ $color-black: #000000;
   border-radius: 5px;
   padding: 10px;
   display: grid;
-  grid-template-columns: 90% 10%;
 
-  &__item-content, &__item-actions {
+  &__item-content {
     padding: 10px;
     background-color: rgba($color-black, 0.2);
-    border-radius: 5px;
+    border-radius: 5px 0 0 5px;
 
     &--label {
       display: block;
     }
-
   }
+
+  &__item-actions {
+    padding: 10px;
+    background-color: rgba($color-black, 0.2);
+    border-radius: 0 5px 5px 0;
+
+    &--delete:hover {
+      transition: all 0.2s;
+      transform: scale(2);
+      cursor: pointer;
+    }
+  }
+}
+
+.ticket-administrable {
+  grid-template-columns: 90% 10%;
 }

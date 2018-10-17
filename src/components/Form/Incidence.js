@@ -61,9 +61,9 @@ const mapDispatchToProps = (dispatch, props) => {
   return {
     createIncidence(event, subject, description, user_id) {
       event.preventDefault();
-      if (subject !== null && subject !== undefined && subject !== '' && 
-      description !== null && description !== undefined && description !== '' && 
-      user_id !== null && user_id !== undefined && user_id !== '') {
+      if (subject && subject !== '' && 
+      description && description !== '' && 
+      user_id && user_id !== '') {
         props.toggleModal();
         dispatch(createIncidence(subject, description, user_id));
       } else {

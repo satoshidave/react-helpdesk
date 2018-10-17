@@ -6,14 +6,15 @@ import Layout from '../../components/Layout/Layout';
 import Modal from '../../components/Modal/Modal'
 import Ticket from '../../components/Ticket/Ticket';
 import { connect } from 'react-redux';
-import { loadTickets } from '../../actions';
+import { loadTickets, loadAllTickets } from '../../actions';
 import './Dashboard.css';
 
 class Dashboard extends Component {
   constructor () {
     super ();
     this.state = {
-      actions: []
+      actions: [],
+      isAdmin: false
     }
     this.modal = React.createRef();
   }
@@ -24,7 +25,7 @@ class Dashboard extends Component {
   }
   componentDidMount () {
     this.setActions();
-    this.props.loadTickets(this.props.user.id);
+    this.props.loadTickets(this.props.user.id, this.state.isAdmin);
   }
   setActions = () => {
     switch (this.props.user.role) {
@@ -47,7 +48,25 @@ class Dashboard extends Component {
         break;
     }
   }
+  componentWillMount () {
+    const { role } = this.props.user;
+    switch (role) {
+      case 1:
+        this.setState({
+          isAdmin: true
+        });
+        break;
+      case 2:
+        this.setState({
+          isAdmin: false
+        });
+        break;
+      default:
+      break;
+    }
+  }
   render () {
+    console.log(this.props.user.role)
     const { tickets } = this.props;
     return (
       <>
@@ -63,7 +82,7 @@ class Dashboard extends Component {
               {
                 tickets.map((item, index) => {
                   return (
-                    <Ticket key={index} subject={item.subject} description={item.description} />
+                    <Ticket key={index} subject={item.subject} description={item.description} administrable={this.state.isAdmin} />
                   )
                 })
               }
@@ -86,8 +105,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadTickets (user_id) {
-      dispatch(loadTickets(user_id));
+    loadTickets (user_id, isAdmin) {
+      console.log(isAdmin);
+      !isAdmin ? 
+      dispatch(loadTickets(user_id)):dispatch(loadAllTickets());
     }
   }
 }

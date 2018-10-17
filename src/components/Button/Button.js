@@ -1,12 +1,13 @@
-import React from 'react'
+import React from 'react';
 import './Button.css';
 
 const Button = (props) => {
+  const { value, onClick } = props;
   return (
-    <span onClick={props.onClick} className="button template--button is-outlined is-inverted">
-      {props.value}
+    <span onClick={onClick} className="button template--button is-outlined is-inverted">
+      {value}
     </span>
-  )
-}
+  );
+};
 
 export default Button;
