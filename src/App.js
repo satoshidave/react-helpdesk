@@ -5,6 +5,10 @@ import { connect } from 'react-redux';
 import {Switch, Route} from 'react-router-dom';
 import { loadState } from './actions';
 import history from './history';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faTrash);
 
 class App extends Component {
   state = {

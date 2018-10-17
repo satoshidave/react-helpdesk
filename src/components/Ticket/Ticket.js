@@ -1,12 +1,18 @@
 import React from 'react';
-import './Ticket.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './Ticket.scss';
 
 const Ticket = (props) => {
   return (
     <div className="column is-12">
       <div className="ticket-box">
-        <span className="ticket-label">Asunto: {props.subject}</span>
-        <span className="ticket-label">Descripcion: {props.description}</span>
+        <div className="ticket-box__item-content">
+          <span className="ticket-box__item-content--label">Asunto: {props.subject}</span>
+          <span className="ticket-box__item-content--label">Descripcion: {props.description}</span>
+        </div>
+        <div className="ticket-box__item-actions">
+          <FontAwesomeIcon icon="trash" />
+        </div>
       </div>
     </div>
   )
