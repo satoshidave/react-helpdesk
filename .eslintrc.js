@@ -1,7 +1,9 @@
 module.exports = {
     "extends": "airbnb",
     "globals": {
-        "localStorage": true // Habilita localStorage como variable global.
+        "localStorage": true, // Habilita localStorage como variable global.
+        "document": true, // Habilita document como variable global.
+        "window": true,
     },
     "rules": {
         "no-console": 0, // Deshabilita error al hacer console.log
@@ -11,5 +13,7 @@ module.exports = {
         "jsx-a11y/no-static-element-interactions": "off", // Desactiva error cuando un elemento no tiene un role.
         "jsx-a11y/click-events-have-key-events": "off", // Desactiva error cuando un elemento interactivo no tiene un keyboard listener.
         "react/prop-types": 0, // Desactiva uso de PropTypes en React.Js
+        "jsx-a11y/label-has-associated-control": "off", // Desactiva asociación de un control a un label.
+        "jsx-a11y/label-has-for": "off", // Desactiva exigencia de atributo htmlFor de un label.
     }
 };

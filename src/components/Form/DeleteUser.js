@@ -20,9 +20,8 @@ class DeleteUser extends Component {
           <Button onClick={this.deleteUser} value="Eliminar" />
         </footer>
       </>
-      
-    )
-  }
-}
+    );
+  };
+};
 
 export default DeleteUser;

@@ -1,15 +1,17 @@
-const connection = require('../connection');
 const express = require('express');
+const connection = require('../connection');
+
 const router = express.Router();
 
-router.post('/', (req, res, next) => {
-  const { name, user, password, role } = req.body;
-  let data = {
+router.post('/', (req, res) => {
+  const {
+    name, user, password, role,
+  } = req.body;
+  const data = {
     success: false,
-    message: null
-  }
-  console.log(req.body)
-  const hasKeys = Object.keys(req.body).length.toString()
+    message: null,
+  };
+  const hasKeys = Object.keys(req.body).length.toString();
   if (hasKeys === '0') {
     data.message = 'No se han recibido datos';
     res.status(500);
