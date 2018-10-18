@@ -1,0 +1,57 @@
+$color-blue--darken: #282c34;
+$color-blue--react: #61dafb;
+$color-white: #ffffff;
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.App {
+  text-align: center;
+
+  &__header {
+    background-color: $color-blue--darken;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+
+    &--input {
+      background-color: rgba($color-white, .1);
+      border-color: $color-blue--react;
+      border-width: 1px;
+      color: $color-white;
+
+      &:focus {
+        border-color: $color-blue--react;
+        border-width: 2px;
+      }
+
+      &::placeholder {
+        color: $color-white;
+      }
+    }
+  }
+
+  &__logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 20vmin;
+  }
+}
+
+.link {
+  background-color: #61dafb;
+  color: $color-blue--darken;
+}
+
+.label {
+  color: #ffffff;
+}

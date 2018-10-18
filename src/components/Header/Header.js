@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import './Header.css';
+import './Header.scss';
 import history from '../../history';
 import Button from '../Button/Button'
 import { connect } from 'react-redux';
+import logo from '../../assets/img/logo.svg';
 
 class Header extends Component {
   componentDidMount () {
@@ -18,11 +19,12 @@ class Header extends Component {
       name: 'Logout', onclick: this.logout
     }];
     return (
-      <div className="main--header">
-        <div className="main--header--left">
+      <div className="main-header">
+        <div className="main-header__left">
+          <img src={logo} className="main-header__left--logo" alt="logo"/>
           <h3>{this.props.user.name}</h3>
         </div>
-        <div className="main--header--right">
+        <div className="main-header__right">
           {
             items.map((item, index) => {
               const { onclick, name } = item;

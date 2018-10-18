@@ -2,7 +2,7 @@ import React from 'react';
 
 const Text = (props) => {
   const {
-    label, className, placeholder, onChange,
+    label, className, placeholder, onChange, inputClassName,
   } = props;
   const hasLabel = label !== undefined || false;
   return (
@@ -11,7 +11,7 @@ const Text = (props) => {
         hasLabel ? <label className={`label ${className}`}>{label}</label> : ''
       }
       <div className="control">
-        <input type="text" className="input" placeholder={`${placeholder}`} onChange={onChange} required />
+        <input type="text" className={`input ${inputClassName}`} placeholder={`${placeholder}`} onChange={onChange} required />
       </div>
     </div>
   );

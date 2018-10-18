@@ -3,7 +3,7 @@ import Text from '../Input/Text';
 import Button from '../Button/Button';
 import { deleteUser } from '../../actions';
 import { connect } from 'react-redux';
-import './Incidence.css';
+import './Incidence.scss';
 
 class DeleteUser extends Component {
   state = {

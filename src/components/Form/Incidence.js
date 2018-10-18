@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Button from '../Button/Button';
 import Text from '../Input/Text';
-import './Incidence.css';
+import './Incidence.scss';
 import { connect } from 'react-redux';
 import { createIncidence } from '../../actions';
 

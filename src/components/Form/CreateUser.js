@@ -4,7 +4,7 @@ import Password from '../Input/Password';
 import Button from '../Button/Button';
 import { connect } from 'react-redux';
 import { createUser } from '../../actions';
-import './Incidence.css';
+import './Incidence.scss';
 
 class CreateUser extends Component {
   state = {
