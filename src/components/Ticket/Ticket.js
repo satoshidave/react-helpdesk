@@ -1,9 +1,13 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { connect } from 'react-redux';
+import { deleteTicket } from '../../actions';
 import './Ticket.scss';
 
 const Ticket = (props) => {
-  const { subject, description, administrable } = props;
+  const {
+    subject, description, identifier, administrable,
+  } = props;
   return (
     <div className="column is-12">
       <div className={`ticket-box ${administrable ? 'ticket-administrable' : ''}`}>
@@ -20,7 +24,11 @@ const Ticket = (props) => {
         {
           administrable ? (
             <div className="ticket-box__item-actions">
-              <FontAwesomeIcon className="ticket-box__item-actions--delete" icon="trash" />
+              <FontAwesomeIcon
+                onClick={event => props.deleteTicket(event, identifier)}
+                className="ticket-box__item-actions--delete"
+                icon="trash"
+              />
             </div>) : null
         }
       </div>
@@ -28,4 +36,11 @@ const Ticket = (props) => {
   );
 };
 
-export default Ticket;
+const mapDispatchToProps = dispatch => ({
+  deleteTicket(event, identifier) {
+    event.preventDefault();
+    dispatch(deleteTicket(identifier));
+  },
+});
+
+export default connect(null, mapDispatchToProps)(Ticket);

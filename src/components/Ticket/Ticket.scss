@@ -7,6 +7,11 @@ $white-color: #ffffff;
   padding: 10px;
   display: grid;
 
+  &:hover {
+    transition: all .2s;
+    background-color: rgba($white-color,0.1);
+  }
+
   &__item-content {
     padding: 10px;
     background-color: rgba($color-black, 0.2);
@@ -25,11 +30,17 @@ $white-color: #ffffff;
     padding: 10px;
     background-color: rgba($color-black, 0.2);
     border-radius: 0 5px 5px 0;
+    display: flex;
+    align-items: center;
 
-    &--delete:hover {
+    &--delete {
       transition: all 0.2s;
-      transform: scale(2);
-      cursor: pointer;
+      transform: scale(1);
+
+      &:hover {
+        transform: scale(3);
+        cursor: pointer;
+      }
     }
   }
 }

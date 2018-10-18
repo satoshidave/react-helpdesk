@@ -74,6 +74,17 @@ const loadAllTickets = () => async (dispatch) => {
   });
 };
 
+const deleteTicket = id => async (dispatch) => {
+  await axios.post('http://127.0.0.1:9000/incidences/delete', { id });
+  const request = await axios.get('http://127.0.0.1:9000/incidences/all');
+  const { data } = request;
+  return dispatch({
+    type: 'USER_TICKETS',
+    tickets: data.data,
+  });
+};
+
 export {
-  loadState, authUser, createUser, resetCreateUser, createIncidence, loadTickets, loadAllTickets,
+  loadState, authUser, createUser, resetCreateUser,
+  createIncidence, loadTickets, loadAllTickets, deleteTicket,
 };

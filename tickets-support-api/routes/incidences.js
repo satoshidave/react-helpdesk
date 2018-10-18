@@ -72,4 +72,30 @@ router.get('/all', (req, res) => {
   });
 });
 
+router.post('/delete', (req, res) => {
+  const { id } = req.body;
+  const data = {
+    success: false,
+    message: null,
+  };
+  if (id !== undefined) {
+    connection.query('DELETE FROM tickets WHERE id = ?', [id], (err) => {
+      if (err) {
+        data.message = 'ERROR EN EL SERVIDOR';
+        res.status(500);
+        res.send(data);
+      } else {
+        data.success = true;
+        data.message = 'RESPUESTA OK';
+        res.status(200);
+        res.send(data);
+      }
+    });
+  } else {
+    data.message = 'TICKET UNDEFINED';
+    res.status(500);
+    res.send(data);
+  }
+});
+
 module.exports = router;

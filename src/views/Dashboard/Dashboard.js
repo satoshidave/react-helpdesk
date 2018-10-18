@@ -80,9 +80,9 @@ class Dashboard extends Component {
           <div className="container">
             <div className="columns is-multiline">
               {
-                tickets.map((item, index) => {
+                tickets.map((item) => {
                   return (
-                    <Ticket key={index} subject={item.subject} description={item.description} administrable={this.state.isAdmin} />
+                    <Ticket key={item.id} subject={item.subject} description={item.description} identifier={item.id} administrable={this.state.isAdmin}/>
                   )
                 })
               }
