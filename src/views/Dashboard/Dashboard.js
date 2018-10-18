@@ -81,8 +81,11 @@ class Dashboard extends Component {
             <div className="columns is-multiline">
               {
                 tickets.map((item) => {
+                  const {
+                    id, name, user_id, subject, description,
+                  } = item;
                   return (
-                    <Ticket key={item.id} subject={item.subject} description={item.description} identifier={item.id} administrable={this.state.isAdmin}/>
+                    <Ticket key={id} user={name} userId={user_id} subject={subject} description={description} identifier={id} administrable={this.state.isAdmin}/>
                   )
                 })
               }

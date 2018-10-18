@@ -35,7 +35,7 @@ class Modal extends Component {
           case 'delete-user':
             this.setState({
               title: 'Eliminar usuario',
-              component: <DeleteUser />
+              component: <DeleteUser toggleModal={this.toggleModal} />
             });
             break;
           default:

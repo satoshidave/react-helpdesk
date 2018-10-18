@@ -57,7 +57,7 @@ router.get('/all', (req, res) => {
     message: null,
     success: false,
   };
-  connection.query('SELECT * FROM tickets', (err, rows) => {
+  connection.query('SELECT T.id, T.subject, T.description, T.status, T.comment, T.user_id, U.user, U.name FROM tickets AS T, users AS U WHERE U.id = T.user_id', (err, rows) => {
     if (err) {
       data.message = 'ERROR EN EL SERVIDOR';
       res.status(500);

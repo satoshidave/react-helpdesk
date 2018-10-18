@@ -6,7 +6,7 @@ import './Ticket.scss';
 
 const Ticket = (props) => {
   const {
-    subject, description, identifier, administrable,
+    subject, description, identifier, administrable, user, userId,
   } = props;
   return (
     <div className="column is-12">
@@ -20,6 +20,16 @@ const Ticket = (props) => {
             <strong>Descripcion: </strong>
             {description}
           </span>
+          {
+            administrable ? (
+              <span className="ticket-box__item-content--label">
+                <strong>Creado por: </strong>
+                {user}
+                <> <FontAwesomeIcon icon="id-badge" /> </>
+                {userId}
+              </span>
+            ) : null
+          }
         </div>
         {
           administrable ? (

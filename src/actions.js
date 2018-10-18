@@ -34,7 +34,7 @@ const resetCreateUser = () => (dispatch) => {
 };
 
 const createUser = (name, user, password, role) => async (dispatch) => {
-  const request = await axios.post('http://127.0.0.1:9000/createUser', {
+  const request = await axios.post('http://127.0.0.1:9000/users/create', {
     name, user, password, role,
   });
   const { data } = request;
@@ -44,6 +44,10 @@ const createUser = (name, user, password, role) => async (dispatch) => {
     type: 'CREATE_USER_STATUS',
     success,
   });
+};
+
+const deleteUser = id => async () => {
+  await axios.post('http://127.0.0.1:9000/users/delete', { id });
 };
 
 const createIncidence = (subject, description, user_id) => async (dispatch) => {
@@ -86,5 +90,5 @@ const deleteTicket = id => async (dispatch) => {
 
 export {
   loadState, authUser, createUser, resetCreateUser,
-  createIncidence, loadTickets, loadAllTickets, deleteTicket,
+  createIncidence, loadTickets, loadAllTickets, deleteTicket, deleteUser,
 };
