@@ -44,7 +44,7 @@ router.post('/get', (req, res) => {
       } else {
         data.message = 'RESPUESTA OK';
         data.success = true;
-        data.data = rows;
+        data.data = rows.reverse();
         res.status(200);
         res.send(data);
       }
@@ -65,7 +65,7 @@ router.get('/all', (req, res) => {
     } else {
       data.message = 'RESPUESTA OK';
       data.success = true;
-      data.data = rows;
+      data.data = rows.reverse();
       res.status(200);
       res.send(data);
     }
