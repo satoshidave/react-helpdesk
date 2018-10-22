@@ -1,39 +1,43 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
-const initialState = {
-  user: [],
-  userCreated: false,
-  tickets: [],
-};
-
-const reducer = (state, action) => {
+const user = (state = [], action) => {
   switch (action.type) {
   case 'AUTH_USER':
-    return {
-      ...state,
-      user: action.user,
-    };
+    return action.user;
   case 'STATUS':
-    return {
-      ...state,
-      user: action.user,
-    };
-  case 'CREATE_USER_STATUS':
-    return {
-      ...state,
-      userCreated: action.success,
-    };
-  case 'USER_TICKETS':
-    console.log(action);
-    return {
-      ...state,
-      tickets: action.tickets,
-    };
+    return action.user;
   default:
     break;
   }
   return state;
 };
 
-export default createStore(reducer, initialState, applyMiddleware(thunk));
+const userCreated = (state = [], action) => {
+  switch (action.type) {
+  case 'CREATE_USER_STATUS':
+    return action.success;
+  default:
+    break;
+  }
+  return state;
+};
+
+const tickets = (state = [], action) => {
+  switch (action.type) {
+  case 'USER_TICKETS':
+    console.log(action);
+    return action.tickets;
+  default:
+    break;
+  }
+  return state;
+};
+
+const reducers = combineReducers({
+  user,
+  tickets,
+  userCreated,
+});
+
+export default createStore(reducers, applyMiddleware(thunk));
