@@ -28,6 +28,29 @@ router.post('/', (req, res) => {
   });
 });
 
+router.post('/allin', (req, res) => {
+  const { role } = req.body;
+  if (role === 1) {
+    connection.query('SELECT id, user, name, role FROM users', (err, rows) => {
+      if (err) {
+        console.log('ERROR EN EL SERVIDOR');
+        res.send(500);
+      } else {
+        const data = rows;
+        res.status(200);
+        res.send(data);
+      }
+    });
+  }
+});
+
+router.post('/get', (req, res) => {
+  const { id } = req.body;
+  connection.query('SELECT * FROM users WHERE id = ?', [id], (err, rows) => {
+    res.send(rows[0]);
+  });
+});
+
 router.post('/create', (req, res) => {
   const {
     name, user, password, role,

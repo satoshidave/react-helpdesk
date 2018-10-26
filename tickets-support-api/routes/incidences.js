@@ -52,6 +52,23 @@ router.post('/get', (req, res) => {
   }
 });
 
+router.post('/allin', (req, res) => {
+  const { role } = req.body;
+  let data;
+  if (role === 1) {
+    connection.query('SELECT * FROM tickets', (err, rows) => {
+      if (err) {
+        res.status(500);
+        res.send('ERROR AL EJECUTAR CONSULTA');
+      } else {
+        data = rows.reverse();
+        res.status(200);
+        res.send(data);
+      }
+    });
+  }
+});
+
 router.get('/all', (req, res) => {
   const data = {
     message: null,
